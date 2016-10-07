@@ -13,9 +13,15 @@ Docker should crash.
 # Why does it crash?
 
 I believe it has to do with requesting many large files and breaking some of the
-socket code here: https://github.com/docker/hyperkit/blob/master/src/pci_virtio_sock.c#L873
+socket code here: https://github.com/docker/hyperkit/blob/ab368eb453dab1a03a3e8463388d7f3f1841ec42/src/pci_virtio_sock.c#L869
 
-Here is the output from `syslog -w -k Sender Docker` during a crash.
+I tracked this line down by looking at the syslog output:
+
+```
+ Assertion failed: (s->local_shutdown != VIRTIO_VSOCK_FLAG_SHUTDOWN_ALL), function shutdown_local_sock, file src/pci_virtio_sock.c, line 869.
+```
+
+Here is the longer output from `syslog -w -k Sender Docker` during a crash.
 
 ```
  Assertion failed: (s->local_shutdown != VIRTIO_VSOCK_FLAG_SHUTDOWN_ALL), function shutdown_local_sock, file src/pci_virtio_sock.c, line 869.
