@@ -1,0 +1,17 @@
+web:
+  build: .
+  environment:
+    DJANGO_SETTINGS_MODULE: crash.settings
+  command: >
+      uwsgi
+      --pythonpath "/webapp"
+      --chdir "/webapp"
+      --http :9090
+      --disable-sendfile
+      --python-autoreload 3
+      --honour-stdin
+  stdin_open: true
+  volumes:
+    - ./:/webapp
+  ports:
+    - "9090:9090"

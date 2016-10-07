@@ -1,0 +1,14 @@
+-r common.txt
+
+model_mommy==1.2.6
+django-debug-toolbar==1.3
+ipython==4.1.1
+flake8==2.1.0
+freezegun==0.3.1
+httmock==1.2.5
+mock==1.0.1
+
+watchdog==0.8.3
+django-silk==0.5.2
+ipdb==0.8.1
+requests-mock==1.1.0
