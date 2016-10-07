@@ -1,5 +1,5 @@
 {% load static %}<!doctype html>
 <h1>HELLO!</h1>
-{% for n in 'abcdefghiklmnopqrstuvwxyz0123456789' %}
+{% for n in "x"|rjust:"1000" %}
   <script src="{% static 'big-script.js?cb=' %}{{ forloop.counter }}"></script>
 {% endfor %}
